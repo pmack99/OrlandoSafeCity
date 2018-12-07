@@ -44,6 +44,10 @@
           <label class="form-check-label" for="inlineCheckbox2">Theft</label>
         </div>
         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="burglary">
+            <label class="form-check-label" for="inlineCheckbox3">Burglary</label>
+          </div>
+        <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="robbery">
           <label class="form-check-label" for="inlineCheckbox3">Robbery</label>
         </div>
@@ -89,6 +93,7 @@
     var rMarker;
     var aMarker;
     var hMarker;
+    var bMarker;
 
     var markers = {
       // Contains all of the homicide markers.
@@ -99,6 +104,7 @@
       vehicle: [],
       assault: [],
       narcotics: [],
+      burglary: []
     };
 
     var laBoundaries;
@@ -167,6 +173,14 @@
       }
     });
 
+    $("#burglary").change(function () {
+      if ($("#burglary").prop("checked")) {
+        burglary();
+      } else {
+        removeBmarkers()
+      }
+    });
+
     $("#robbery").change(function () {
       if ($("#robbery").prop("checked")) {
         robbery();
@@ -227,6 +241,12 @@
         }
     }
 
+      function removeBmarkers() {
+      for (var i = 0; i < markers.burglary.length; i++) {
+          markers.burglary[i].setMap(null);
+        }
+    }
+
         function removeRmarkers() {
       for (var i = 0; i < markers.robbery.length; i++) {
           markers.robbery[i].setMap(null);
@@ -270,7 +290,7 @@
         url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
         type: "GET",
         data: {
-          "$limit": 10000,
+          "$limit": 20000,
           status: "Mapped",
           "$q": "2017",
           case_offense_category: "Theft",
@@ -285,7 +305,7 @@
             position: new google.maps.LatLng(entry.location.coordinates[1],
               entry.location.coordinates[0]),
             map: map,
-            icon: 'yellow_MarkerT.png',
+            icon: 'images/yellow_MarkerT.png',
           });
           markers.theft.push(tMarker);
 
@@ -318,7 +338,7 @@
             position: new google.maps.LatLng(entry.location.coordinates[1],
               entry.location.coordinates[0]),
             map: map,
-            icon: 'red_MarkerH.png',
+            icon: 'images/red_MarkerH.png',
           });
           markers.homicide.push(hMarker);
         })
@@ -355,7 +375,7 @@
             position: new google.maps.LatLng(entry.location.coordinates[1],
               entry.location.coordinates[0]),
             map: map,
-            icon: 'green_MarkerA.png',
+            icon: 'images/green_MarkerA.png',
           });
           markers.assault.push(aMarker);
         })
@@ -388,7 +408,7 @@
             position: new google.maps.LatLng(entry.location.coordinates[1],
               entry.location.coordinates[0]),
             map: map,
-            icon: 'purple_MarkerB.png',
+            icon: 'images/purple_MarkerB.png',
           });
           markers.burglary.push(bMarker);
         })
@@ -422,7 +442,7 @@
             position: new google.maps.LatLng(entry.location.coordinates[1],
               entry.location.coordinates[0]),
             map: map,
-            icon: 'brown_MarkerN.png',
+            icon: 'images/brown_MarkerN.png',
           });
           markers.narcotics.push(nMarker);
         })
@@ -456,7 +476,7 @@
             position: new google.maps.LatLng(entry.location.coordinates[1],
               entry.location.coordinates[0]),
             map: map,
-            icon: 'orange_MarkerV.png',
+            icon: 'images/orange_MarkerV.png',
           });
           markers.vehicle.push(vMarker);
         })
@@ -488,7 +508,7 @@
             position: new google.maps.LatLng(entry.location.coordinates[1],
               entry.location.coordinates[0]),
             map: map,
-            icon: 'paleblue_MarkerR.png',
+            icon: 'images/paleblue_MarkerR.png',
           });
           markers.robbery.push(rMarker);
         })
