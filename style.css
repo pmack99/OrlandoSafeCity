@@ -1,22 +1,15 @@
 .background {
-  height: 3500px;
-  width: 100%;
-  background-image: url("https://www.nasa.gov/sites/default/files/thumbnails/image/iss056e162811.jpg");
   background-size: cover;
-  opacity: 0.8;
   top: 0;
   left: 0;
-  z-index: -1;
-  position: absolute;
+  position: relative;
+  background-size:100% auto;
 }
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 14px;
-	font-size: normal;
-	font-smooth: always;
-	-webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: antialiased;
+	font-size: 18px;
+  color: black;
 }
 
 #mapId {
@@ -127,30 +120,3 @@ h2 {
 }
 
 
-@media (max-width: 770px) {
-  .background {
-    height: 3000px;
-  }
-  .display-4 {
-    font-family: "Questrial", sans-serif;
-    font-size: 30px;
-  }
-  #issInfo {
-    font-size: 15px;
-  }
-  #mapId {
-    height: 600px;
-  }
-  h2 {
-    font-size: 20px;
-  }
- 
-  .rounded{
-    max-width: 300px;
-  }
-  h5 {
-    font-size: 15px;
-  }
-
-
-}
